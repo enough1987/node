@@ -1,8 +1,12 @@
-const stdin = process.openStdin();
+const stdin = process.stdin;
 
-stdin.addListener("data", (d) => {
-    // note:  d is an object, and when converted to a string it will
-    // end with a linefeed.  so we (rather crudely) account for that
-    // with toString() and then trim()
-    console.log( d.toString().split("").reverse().join("") );
-  });
+const formatData = (d) => {
+    return d.toString().split("").reverse().join("")
+}
+
+stdin.on("data", (d) => {
+    const formatedData = formatData(d);
+
+    console.log( formatedData );
+});
+
