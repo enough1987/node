@@ -1,8 +1,9 @@
 
 const csv = require('csvtojson');
+const ReadStream = require('./readStream.js');
 const fs = require('fs');
 
-const readableStreamToTask2File = fs.createReadStream("./txt/task2.txt", "utf8");
+const txtFilePath = "./txt/task2.txt";
 const csvFilePath = './csv/node_mentoring_t1_2_input_example.csv';
 
 const init = () => {
@@ -11,13 +12,15 @@ const init = () => {
         .then((jsonData) => {
             writeJsonToTxt(jsonData);
         })
+        .catch((err) => {
+            console.log('error: ', err)
+        })
 }
 
 const writeJsonToTxt = (jsonData) => {
-    readableStreamToTask2File.pipe(process.stdout);
-    readableStreamToTask2File.on('end', function() {
-        console.log('finished');
-    });
+    const rs = new ReadStream(jsonData);
+    const file = fs.createWriteStream(txtFilePath);
+    rs.pipe(file);
 }
 
 
