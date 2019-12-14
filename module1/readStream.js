@@ -1,6 +1,7 @@
 const Readable = require('stream').Readable;
 const util = require('util');
 
+// eslint-disable-next-line func-style
 const ReadStream = function (data) {
     Readable.call(this, {
         objectMode: true
@@ -12,13 +13,14 @@ const ReadStream = function (data) {
 
 util.inherits(ReadStream, Readable);
 
+// eslint-disable-next-line func-style
 ReadStream.prototype._read = function () {
     if (this.curIndex === this.data.length) {
         return this.push(null);
     }
 
-    var data = this.data[this.curIndex++];
-    console.log('read             : ' + JSON.stringify(data));
+    const data = this.data[this.curIndex++];
+    console.log(`read: ${JSON.stringify(data)}`);
     this.push(JSON.stringify(data));
 };
 
