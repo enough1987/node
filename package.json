@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "lint": "./node_modules/.bin/eslint **/*.js --fix",
+    "lint": "./node_modules/.bin/eslint \"**/*.js\" --fix",
     "task1": "nodemon --exec babel-node ./module1/task1.js",
-    "task2": "nodemon --exec babel-node ./module1/task2.js"
+    "task2": "nodemon --exec babel-node ./module1/task2.js",
+    "module2": "nodemon --exec babel-node ./module2/bin/www"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,11 @@
     "nodemon": "^2.0.1"
   },
   "dependencies": {
-    "csvtojson": "^2.0.10"
+    "cookie-parser": "~1.4.4",
+    "csvtojson": "^2.0.10",
+    "debug": "~2.6.9",
+    "express": "^4.17.1",
+    "morgan": "~1.9.1",
+    "uuid": "^3.3.3"
   }
 }
