@@ -28,6 +28,7 @@
     "nodemon": "^2.0.1"
   },
   "dependencies": {
+    "@hapi/joi": "^17.0.0",
     "cookie-parser": "~1.4.4",
     "csvtojson": "^2.0.10",
     "debug": "~2.6.9",
