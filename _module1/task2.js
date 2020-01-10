@@ -1,6 +1,6 @@
 
 const csv = require('csvtojson');
-const ReadStream = require('./readStream.js');
+const ReadStream = require('./readStream.js.js');
 const fs = require('fs');
 
 const txtFilePath = './module1/asssets/task2.txt';
