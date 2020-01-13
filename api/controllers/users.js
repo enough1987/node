@@ -2,68 +2,72 @@
 const usersService = require('../services/users');
 
 class UsersController {
-    static getAutoSuggestUsers(req, res) {
-        const { loginSubstring, limit } = req.query;
-        const suggestions = usersService.getAutoSuggestUsers(loginSubstring, limit);
+  static async getAutoSuggestUsers(req, res) {
+    const { loginSubstring, limit } = req.query;
 
-        res.json({
-            error: false,
-            data: suggestions
-        });
-    }
+    const suggestions = await usersService.getAutoSuggestUsers(loginSubstring, limit);
 
-    static getUsers(req, res) {
-        const users = usersService.getUsers();
+    res.json({
+      error: false,
+      data: suggestions
+    });
+  }
 
-        res.json({
-            error: false,
-            data: users
-        });
-    }
+  static async getUsers(req, res) {
+    const users = await usersService.getUsers();
 
-    static getUserById(req, res) {
-        const userId = req.params.userId;
-        const user = usersService.getUserById(userId);
+    res.json({
+      error: false,
+      data: users
+    });
+  }
 
-        res.json({
-            error: false,
-            data: user
-        });
-    }
+  static async getUserById(req, res) {
+    const userId = req.params.userId;
 
-    static createUser(req, res) {
-        const user = req.user;
-        const users = usersService.createUser(user);
+    const user = await usersService.getUserById(userId);
 
-        res.json({
-            error: false,
-            data: users
-        });
-    }
+    res.json({
+      error: false,
+      data: user
+    });
+  }
 
-    static updateUser(req, res) {
-        const user = req.user;
-        const id  =  req.body.id;
-        const users = usersService.updateUser(
-            user,
-            id
-        );
+  static async createUser(req, res) {
+    const user = req.user;
+    const users = await usersService.createUser(user);
 
-        res.json({
-            error: false,
-            data: users
-        });
-    }
+    res.json({
+      error: false,
+      data: users
+    });
+  }
 
-    static deleteUser(req, res) {
-        const userId = req.params.userId;
-        const users = usersService.deleteUser(userId);
+  static async updateUser(req, res) {
+    const user = req.user;
+    const id = req.body.id;
 
-        res.json({
-            error: false,
-            data: users
-        });
-    }
+    const users = await usersService.updateUser(
+      user,
+      id
+    );
+
+    res.json({
+      error: false,
+      data: users
+    });
+  }
+
+  static async deleteUser(req, res) {
+    const userId = req.params.userId;
+
+    const users = await usersService.deleteUser(userId);
+
+    res.json({
+      error: false,
+      data: users
+    });
+  }
 }
 
 module.exports = UsersController;

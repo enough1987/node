@@ -12,13 +12,13 @@ router.get('/', UsersController.getUsers);
 router.get('/:userId', UsersController.getUserById);
 
 router.post('/',
-    usersValidate.validateUser,
-    UsersController.createUser
+  usersValidate.validateUser,
+  UsersController.createUser
 );
 
 router.put('/',
-    usersValidate.validateUser,
-    UsersController.updateUser
+  usersValidate.validateUser,
+  UsersController.updateUser
 );
 
 router.delete('/:userId', UsersController.deleteUser);

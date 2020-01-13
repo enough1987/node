@@ -1,56 +1,107 @@
-const users = require('../../db/users');
+import db from '../../data-access/models';
 
 export default class UserService {
-    static getAutoSuggestUsers(loginSubstring, limit) {
-        const suggestions = users
-            .filter((value, index, self) => {
-                return self.indexOf(value) === index
-                && value.login.includes(loginSubstring);
-            })
-            .slice(0, limit)
-            .map((obj) => {
-                return obj.login;
-            });
+  static async getAutoSuggestUsers(loginSubstring, limit) {
+    const users = await UserService.getUsers();
 
-        return suggestions;
+    const suggestions = users
+      .filter((value, index, self) => {
+        return self.indexOf(value) === index
+                    && value.login.includes(loginSubstring);
+      })
+      .slice(0, limit)
+      .map((obj) => {
+        console.log(obj);
+        return obj.login;
+      });
+
+    return suggestions;
+  }
+
+  static async getUsers() {
+    try {
+      const users = await db.User.findAll({
+        attributes: ['userId', 'login', 'age', 'isDeleted'],
+        raw: true
+      });
+
+      return users;
+    } catch (error) {
+      throw error;
     }
+  }
 
-    static getUsers() {
-        return users;
+  static async getUserById(userId) {
+    try {
+      const user = await db.User.findAll({
+        where: {
+          userId
+        },
+        attributes: ['userId', 'login', 'age', 'isDeleted'],
+        raw: true
+      });
+
+      return user[0];
+    } catch (error) {
+      throw error;
     }
+  }
 
-    static getUserById(userId) {
-        const user = users.find((_user) => _user.id === userId) || {};
+  static async createUser(user) {
+    try {
+      const res = await db.User.create(user, {
+        returning: true
+      });
 
-        return user;
+      return res;
+    } catch (error) {
+      throw error;
     }
+  }
 
-    static createUser(user) {
-        users.push(user);
+  static async updateUser(user, userId) {
+    try {
+      const previosUser = await UserService.getUserById(userId);
+      const newUser = Object.assign(previosUser, user);
 
-        return users;
-    }
-
-    static updateUser(user, id) {
-        const index = users.map(x => {
-            return x.id;
-        }).indexOf(id);
-        if (index !== -1) {
-            users[index] = user;
+      const res = await db.User.update(
+        newUser,
+        {
+          returning: true,
+          where: {
+            userId
+          }
         }
+      );
 
-        return users;
+      return res;
+    } catch (error) {
+      throw error;
     }
+  }
 
-    static deleteUser(userId) {
-        users.forEach(user => {
-            if (user.id === userId) {
-                user.isDeleted = true;
-            }
-        });
+  static async deleteUser(userId) {
+    try {
+      const previosUser = await UserService.getUserById(userId);
+      const newUser = Object.assign(previosUser, {
+        isDeleted: true
+      });
 
-        return users;
+      const res = await db.User.update(
+        newUser,
+        {
+          returning: true,
+          where: {
+            userId
+          }
+        }
+      );
+
+      return res;
+    } catch (error) {
+      throw error;
     }
+  }
 }
 
 module.exports = UserService;

@@ -8,7 +8,7 @@
     "lint": "./node_modules/.bin/eslint \"**/*.js\" --fix",
     "task1": "nodemon --exec babel-node ./module1/task1.js",
     "task2": "nodemon --exec babel-node ./module1/task2.js",
-    "module2": "nodemon --exec babel-node ./module2/bin/www"
+    "start": "nodemon --exec babel-node ./bin/www"
   },
   "keywords": [],
   "author": "",
@@ -32,8 +32,12 @@
     "cookie-parser": "~1.4.4",
     "csvtojson": "^2.0.10",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "~1.9.1",
+    "pg": "^7.17.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.3",
     "uuid": "^3.3.3"
   }
 }
