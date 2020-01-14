@@ -3,70 +3,107 @@ const usersService = require('../services/users');
 
 class UsersController {
   static async getAutoSuggestUsers(req, res) {
-    const { loginSubstring, limit } = req.query;
+    try {
+      const { loginSubstring, limit } = req.query;
 
-    const suggestions = await usersService.getAutoSuggestUsers(loginSubstring, limit);
+      const suggestions = await usersService.getAutoSuggestUsers(loginSubstring, limit);
 
-    res.json({
-      error: false,
-      data: suggestions
-    });
+      res.json({
+        error: false,
+        data: suggestions
+      });
+    } catch (error) {
+      res.status(400).json({
+        error
+      });
+    }
   }
 
   static async getUsers(req, res) {
-    const users = await usersService.getUsers();
+    try {
+      const users = await usersService.getUsers();
 
-    res.json({
-      error: false,
-      data: users
-    });
+      res.json({
+        error: false,
+        data: users
+      });
+    } catch (error) {
+      res.status(400).json({
+        error
+      });
+    }
   }
 
   static async getUserById(req, res) {
-    const userId = req.params.userId;
+    try {
+      const userId = req.params.userId;
 
-    const user = await usersService.getUserById(userId);
+      const user = await usersService.getUserById(userId);
 
-    res.json({
-      error: false,
-      data: user
-    });
+      res.json({
+        error: false,
+        data: user
+      });
+    } catch (error) {
+      res.status(400).json({
+        error
+      });
+    }
   }
 
   static async createUser(req, res) {
-    const user = req.user;
-    const users = await usersService.createUser(user);
+    try {
+      const user = req.user;
 
-    res.json({
-      error: false,
-      data: users
-    });
+      const users = await usersService.createUser(user);
+
+      res.json({
+        error: false,
+        data: users
+      });
+    } catch (error) {
+      res.status(400).json({
+        error
+      });
+    }
   }
 
   static async updateUser(req, res) {
-    const user = req.user;
-    const id = req.body.id;
+    try {
+      const user = req.user;
+      const id = req.body.id;
 
-    const users = await usersService.updateUser(
-      user,
-      id
-    );
+      const users = await usersService.updateUser(
+        user,
+        id
+      );
 
-    res.json({
-      error: false,
-      data: users
-    });
+      res.json({
+        error: false,
+        data: users
+      });
+    } catch (error) {
+      res.status(400).json({
+        error
+      });
+    }
   }
 
   static async deleteUser(req, res) {
-    const userId = req.params.userId;
+    try {
+      const userId = req.params.userId;
 
-    const users = await usersService.deleteUser(userId);
+      const users = await usersService.deleteUser(userId);
 
-    res.json({
-      error: false,
-      data: users
-    });
+      res.json({
+        error: false,
+        data: users
+      });
+    } catch (error) {
+      res.status(400).json({
+        error
+      });
+    }
   }
 }
 

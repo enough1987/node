@@ -15,7 +15,7 @@ export default class UserService {
         return obj.login;
       });
 
-    return suggestions;
+    return suggestions || [];
   }
 
   static async getUsers() {
@@ -25,7 +25,7 @@ export default class UserService {
         raw: true
       });
 
-      return users;
+      return users || [];
     } catch (error) {
       throw error;
     }
@@ -41,7 +41,7 @@ export default class UserService {
         raw: true
       });
 
-      return user[0];
+      return user[0] || {};
     } catch (error) {
       throw error;
     }

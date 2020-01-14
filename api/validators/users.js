@@ -1,5 +1,5 @@
 const User = require('../../models/user.js');
-const userSchema = require('../../data-access/schemas/users');
+const userSchema = require('../../schemas/users');
 
 const validateUser = (req, res, next) => {
   const user = new User(
@@ -9,11 +9,13 @@ const validateUser = (req, res, next) => {
     req.body.id
   );
   const { error } = userSchema.validate(user);
+
   if (error) {
     return res.status(400).json({
       error
     });
   }
+
   req.user = user;
   next();
 };
