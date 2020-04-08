@@ -312,8 +312,6 @@
         "no-bitwise": 2
     },
     "globals": {
-        "$": true,
-        "ga": true,
         "__ENV__": true,
         "__DEVTOOLS__": true,
         "PUBLIC_URL": true
