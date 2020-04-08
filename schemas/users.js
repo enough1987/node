@@ -25,4 +25,5 @@ const userSchema = Joi.object({
     .required()
 });
 
-module.exports = userSchema;
+export default userSchema;
+

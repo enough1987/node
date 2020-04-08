@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   // eslint-disable-next-line no-unused-vars
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [

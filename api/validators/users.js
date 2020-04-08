@@ -1,5 +1,5 @@
-const User = require('../../models/user.js');
-const userSchema = require('../../schemas/users');
+import User from '../../models/user.js';
+import userSchema from '../../schemas/users';
 
 const validateUser = (req, res, next) => {
   const user = new User(
@@ -20,6 +20,6 @@ const validateUser = (req, res, next) => {
   next();
 };
 
-module.exports = {
+export default {
   validateUser
 };

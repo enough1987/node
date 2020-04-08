@@ -1,5 +1,5 @@
 
-const usersService = require('../services/users');
+import usersService from '../services/users';
 
 class UsersController {
   static async getAutoSuggestUsers(req, res) {
@@ -107,4 +107,4 @@ class UsersController {
   }
 }
 
-module.exports = UsersController;
+export default UsersController;

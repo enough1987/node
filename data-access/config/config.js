@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const dbUrl = 'postgres://tvdysmfp:9ryHgeVVOCq9TDnMQdiPidY35gTqLE1U@balarama.db.elephantsql.com:5432/tvdysmfp';
 
-module.exports = {
+export default {
   development: {
     url: process.env.DEV_DATABASE_URL || dbUrl,
     dialect: 'postgres'

@@ -3,6 +3,6 @@ const asyncHandler = fn => (req, res, next) =>
     .resolve(fn(req, res, next))
     .catch(next);
 
-module.exports = {
+export {
   asyncHandler
 };

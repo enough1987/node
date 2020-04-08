@@ -1,7 +1,7 @@
-const usersRoute = require('./routes/users');
+import usersRoute from './routes/users';
 
 const router = (app) => {
   app.use('/users', usersRoute);
 };
 
-module.exports = router;
+export default router;

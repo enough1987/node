@@ -103,5 +103,3 @@ export default class UserService {
     }
   }
 }
-
-module.exports = UserService;

@@ -1,20 +1,22 @@
 
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
+import fs from 'fs';
+import path from 'path';
+import Sequelize from 'sequelize';
+import config from '../config/config';
+
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.js')[env];
+const _config = config[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else if (config.url) {
-  sequelize = new Sequelize(config.url, config);
+if (_config.use_env_variable) {
+  sequelize = new Sequelize(process.env[_config.use_env_variable], _config);
+} else if (_config.url) {
+  sequelize = new Sequelize(_config.url, _config);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(_config.database, _config.username, _config.password, _config);
 }
 
 // eslint-disable-next-line no-sync
@@ -37,4 +39,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+export default db;

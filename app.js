@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const router = require('./api/router');
+import router from './api/router';
 
 const app = express();
 

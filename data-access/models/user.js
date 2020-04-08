@@ -1,5 +1,5 @@
-module.exports = (sequelize, type) => {
-  const User = sequelize.define('User', {
+const User = (sequelize, type) => {
+  const _User = sequelize.define('User', {
     userId: {
       type: type.STRING,
       allowNull: false,
@@ -23,9 +23,11 @@ module.exports = (sequelize, type) => {
       allowNull: false
     }
   }, {});
-    // eslint-disable-next-line no-unused-vars
-  User.associate = (models) => {
+  // eslint-disable-next-line no-unused-vars
+  _User.associate = (models) => {
     // associations can be defined here
   };
-  return User;
+  return _User;
 };
+
+export default User;
