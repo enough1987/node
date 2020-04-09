@@ -1,26 +1,26 @@
 import express from 'express';
 const router = express.Router();
 
-import validateUser from '../validators/users';
+import validator from '../validators/users';
 import UsersController from '../controllers/users';
 
 
-router.get('/getAutoSuggestUsers', UsersController.getAutoSuggestUsers);
+router.get('/getAutoSuggestUsers', UsersController.getAutoSuggested);
 
-router.get('/', UsersController.getUsers);
+router.get('/', UsersController.getAll);
 
-router.get('/:userId', UsersController.getUserById);
+router.get('/:userId', UsersController.getById);
 
 router.post('/',
-  validateUser.validateUser,
-  UsersController.createUser
+  validator.validateUser,
+  UsersController.create
 );
 
 router.put('/',
-  validateUser.validateUser,
-  UsersController.updateUser
+  validator.validateUser,
+  UsersController.update
 );
 
-router.delete('/:userId', UsersController.deleteUser);
+router.delete('/:userId', UsersController.delete);
 
 module.exports = router;

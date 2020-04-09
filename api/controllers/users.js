@@ -2,11 +2,11 @@
 import usersService from '../services/users';
 
 class UsersController {
-  static async getAutoSuggestUsers(req, res) {
+  static async getAutoSuggested(req, res) {
     try {
       const { loginSubstring, limit } = req.query;
 
-      const suggestions = await usersService.getAutoSuggestUsers(loginSubstring, limit);
+      const suggestions = await usersService.getAutoSuggested(loginSubstring, limit);
 
       res.json({
         error: false,
@@ -19,9 +19,9 @@ class UsersController {
     }
   }
 
-  static async getUsers(req, res) {
+  static async getAll(req, res) {
     try {
-      const users = await usersService.getUsers();
+      const users = await usersService.getAll();
 
       res.json({
         error: false,
@@ -34,11 +34,11 @@ class UsersController {
     }
   }
 
-  static async getUserById(req, res) {
+  static async getById(req, res) {
     try {
-      const userId = req.params.userId;
+      const id = req.params.id;
 
-      const user = await usersService.getUserById(userId);
+      const user = await usersService.getById(id);
 
       res.json({
         error: false,
@@ -51,11 +51,11 @@ class UsersController {
     }
   }
 
-  static async createUser(req, res) {
+  static async create(req, res) {
     try {
       const user = req.user;
 
-      const users = await usersService.createUser(user);
+      const users = await usersService.create(user);
 
       res.json({
         error: false,
@@ -68,14 +68,14 @@ class UsersController {
     }
   }
 
-  static async updateUser(req, res) {
+  static async update(req, res) {
     try {
       const user = req.user;
-      const id = req.body.id;
+      const userId = req.body.userId;
 
-      const users = await usersService.updateUser(
+      const users = await usersService.update(
         user,
-        id
+        userId
       );
 
       res.json({
@@ -89,11 +89,11 @@ class UsersController {
     }
   }
 
-  static async deleteUser(req, res) {
+  static async delete(req, res) {
     try {
       const userId = req.params.userId;
 
-      const users = await usersService.deleteUser(userId);
+      const users = await usersService.delete(userId);
 
       res.json({
         error: false,

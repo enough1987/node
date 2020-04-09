@@ -1,35 +1,29 @@
 
-const Users = {
+
+module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Groups', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      userId: {
+      groupId: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      login: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      password: {
+      permition: {
         type: Sequelize.STRING
-      },
-      age: {
-        type: Sequelize.INTEGER
-      },
-      isDeleted: {
-        type: Sequelize.BOOLEAN
       }
     });
   },
+
   // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Groups');
   }
 };
-
-module.exports = Users;

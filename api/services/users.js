@@ -1,7 +1,7 @@
 import db from '../../data-access/models';
 
 export default class UserService {
-  static async getAutoSuggestUsers(loginSubstring, limit) {
+  static async getAutoSuggested(loginSubstring, limit) {
     const users = await UserService.getUsers();
 
     const suggestions = users
@@ -11,14 +11,13 @@ export default class UserService {
       })
       .slice(0, limit)
       .map((obj) => {
-        console.log(obj);
         return obj.login;
       });
 
     return suggestions || [];
   }
 
-  static async getUsers() {
+  static async getAll() {
     try {
       const users = await db.User.findAll({
         attributes: ['userId', 'login', 'age', 'isDeleted'],
@@ -31,7 +30,7 @@ export default class UserService {
     }
   }
 
-  static async getUserById(userId) {
+  static async getById(userId) {
     try {
       const user = await db.User.findAll({
         where: {
@@ -47,7 +46,7 @@ export default class UserService {
     }
   }
 
-  static async createUser(user) {
+  static async create(user) {
     try {
       const res = await db.User.create(user, {
         returning: true
@@ -59,9 +58,9 @@ export default class UserService {
     }
   }
 
-  static async updateUser(user, userId) {
+  static async update(user, userId) {
     try {
-      const previosUser = await UserService.getUserById(userId);
+      const previosUser = await UserService.getById(userId);
       const newUser = Object.assign(previosUser, user);
 
       const res = await db.User.update(
@@ -80,9 +79,9 @@ export default class UserService {
     }
   }
 
-  static async deleteUser(userId) {
+  static async delete(userId) {
     try {
-      const previosUser = await UserService.getUserById(userId);
+      const previosUser = await UserService.getById(userId);
       const newUser = Object.assign(previosUser, {
         isDeleted: true
       });

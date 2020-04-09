@@ -26,8 +26,12 @@ const User = (sequelize, type) => {
   // eslint-disable-next-line no-unused-vars
   _User.associate = (models) => {
     // associations can be defined here
+    _User.belongsTo(models.Group, {
+      foreignKey: 'name',
+      as: 'group'
+    });
   };
   return _User;
 };
 
-export default User;
+module.exports = User;
