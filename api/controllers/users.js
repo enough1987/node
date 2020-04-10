@@ -122,7 +122,7 @@ class UsersController {
 
   static async delete(req, res) {
     try {
-      const userId = req.params.userId;
+      const userId = req.params.id;
 
       const users = await usersService.delete(userId);
 

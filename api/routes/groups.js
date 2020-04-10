@@ -8,7 +8,7 @@ router.get('/', GroupsController.getAll);
 
 router.get('/addUser', GroupsController.addUsersToGroup);
 
-router.get('/:groupId', GroupsController.getById);
+router.get('/:id', GroupsController.getById);
 
 router.post('/',
   validator.validateGroup,
@@ -20,6 +20,6 @@ router.put('/',
   GroupsController.update
 );
 
-router.delete('/:groupId', GroupsController.delete);
+router.delete('/:id', GroupsController.delete);
 
 module.exports = router;

@@ -5,9 +5,11 @@ import morganLogger from 'morgan';
 import consoleLogger from './middlewares/console-logger';
 import consoleErrorLogger from './middlewares/console-error-logger';
 import router from './api/router';
+import authenticateJWT from './middlewares/auth';
 
 const app = express();
 
+app.use(authenticateJWT);
 app.use(morganLogger('dev'));
 app.use(consoleLogger);
 app.use(consoleErrorLogger);

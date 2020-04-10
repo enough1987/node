@@ -9,7 +9,7 @@ router.get('/getAutoSuggestUsers', UsersController.getAutoSuggested);
 
 router.get('/', UsersController.getAll);
 
-router.get('/:userId', UsersController.getById);
+router.get('/:id', UsersController.getById);
 
 router.post('/',
   validator.validateUser,
@@ -21,6 +21,6 @@ router.put('/',
   UsersController.update
 );
 
-router.delete('/:userId', UsersController.delete);
+router.delete('/:id', UsersController.delete);
 
 module.exports = router;
