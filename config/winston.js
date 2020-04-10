@@ -17,13 +17,17 @@ const logger = createLogger({
       level: 'error',
       format: format.combine(
         format.timestamp({ format: timeFormat }),
-      )
+      ),
+      maxfize: '20m',
+      maxfiles: '10d'
     }),
     new transports.File({
       filename: 'logs/info.log',
       format: format.combine(
         format.timestamp({ format: timeFormat }),
-      )
+      ),
+      maxsize: '20m',
+      maxsiles: '10d'
     }),
     new transports.Console({
       level: 'debug',
