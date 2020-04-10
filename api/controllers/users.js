@@ -1,5 +1,6 @@
 
 import usersService from '../services/users';
+import logger from '../../config/winston';
 
 class UsersController {
   static async getAutoSuggested(req, res) {
@@ -13,6 +14,12 @@ class UsersController {
         data: suggestions
       });
     } catch (error) {
+      logger.debugController(
+        UsersController.name,
+        UsersController.getAutoSuggested.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -28,6 +35,12 @@ class UsersController {
         data: users
       });
     } catch (error) {
+      logger.debugController(
+        UsersController.name,
+        UsersController.getAll.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -45,6 +58,12 @@ class UsersController {
         data: user
       });
     } catch (error) {
+      logger.debugController(
+        UsersController.name,
+        UsersController.getById.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -62,6 +81,12 @@ class UsersController {
         data: users
       });
     } catch (error) {
+      logger.debugController(
+        UsersController.name,
+        UsersController.create.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -83,6 +108,12 @@ class UsersController {
         data: users
       });
     } catch (error) {
+      logger.debugController(
+        UsersController.name,
+        UsersController.update.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -100,6 +131,12 @@ class UsersController {
         data: users
       });
     } catch (error) {
+      logger.debugController(
+        UsersController.name,
+        UsersController.delete.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });

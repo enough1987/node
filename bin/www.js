@@ -8,6 +8,8 @@ const app = require('../app');
 const debug = require('debug')('module2:server');
 const http = require('http');
 
+import logger from '../config/winston.js';
+
 /**
  * Get port from environment and store in Express.
  */
@@ -28,6 +30,17 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+process
+  .on('unhandledRejection', (reason) => {
+    logger.error(`${(new Date()).toUTCString()  } Unhandled Rejection, reason: ${reason}`);
+  })
+  .on('uncaughtException', err => {
+    logger.error(`${(new Date()).toUTCString()  } uncaughtException:`, err.message);
+    logger.error(err.stack);
+    process.exit(1);
+  });
 
 /**
  * Normalize a port into a number, string, or false.
@@ -65,11 +78,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
+      logger.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
+      logger.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:

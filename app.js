@@ -1,12 +1,16 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-import logger from 'morgan';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import morganLogger from 'morgan';
+import consoleLogger from './middlewares/console-logger';
+import consoleErrorLogger from './middlewares/console-error-logger';
 import router from './api/router';
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(morganLogger('dev'));
+app.use(consoleLogger);
+app.use(consoleErrorLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

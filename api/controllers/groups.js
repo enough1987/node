@@ -1,5 +1,6 @@
 
 import groupsService from '../services/groups';
+import logger from '../../config/winston';
 
 class GroupsController {
   static async getAll(req, res) {
@@ -11,6 +12,12 @@ class GroupsController {
         data: groups
       });
     } catch (error) {
+      logger.debugController(
+        GroupsController.name,
+        GroupsController.getAll.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -28,6 +35,12 @@ class GroupsController {
         data: group
       });
     } catch (error) {
+      logger.debugController(
+        GroupsController.name,
+        GroupsController.getById.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -45,6 +58,12 @@ class GroupsController {
         data: groups
       });
     } catch (error) {
+      logger.debugController(
+        GroupsController.name,
+        GroupsController.create.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -66,6 +85,12 @@ class GroupsController {
         data: groups
       });
     } catch (error) {
+      logger.debugController(
+        GroupsController.name,
+        GroupsController.update.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -83,6 +108,12 @@ class GroupsController {
         data: groups
       });
     } catch (error) {
+      logger.debugController(
+        GroupsController.name,
+        GroupsController.delete.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
@@ -101,6 +132,12 @@ class GroupsController {
         data: groups
       });
     } catch (error) {
+      logger.debugController(
+        GroupsController.name,
+        GroupsController.addUsersToGroup.name,
+        req.originalUrl,
+        error
+      );
       res.status(400).json({
         error
       });
