@@ -30,6 +30,23 @@ export default class UserService {
     }
   }
 
+  static async getByLoginAndPassword(login, password) {
+    try {
+      const user = await db.User.findAll({
+        where: {
+          login,
+          password
+        },
+        attributes: ['userId', 'login', 'password', 'age', 'isDeleted'],
+        raw: true
+      });
+
+      return user[0] || {};
+    } catch (error) {
+      throw error;
+    }
+  }
+
   static async getById(userId) {
     try {
       const user = await db.User.findAll({

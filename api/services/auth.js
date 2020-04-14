@@ -1,28 +1,31 @@
 import config from '../../config/config';
 import jwt from 'jsonwebtoken';
-
-const users = [
-  {
-    name: 'test',
-    password: 'test'
-  }
-];
+import usersService from '../services/users';
 
 export default class AuthService {
-  static async login(name, password) {
+  static async login(login, password) {
     try {
-      console.log('------- ', users, name, password);
-      const user = users.find(u => {
-        return u.name === name && u.password === password;
-      });
+      const user = await usersService.getByLoginAndPassword(login, password);
 
       if (user) {
         // Generate an access token
-        const accessToken = jwt.sign({ name: user.name,  role: user.role }, config.accessTokenSecret);
+        const accessToken = jwt.sign({ login: user.login,  password: user.password }, config.accessTokenSecret);
 
         return accessToken;
       }
-      throw Error('Incorrect username or password');
+      throw Error('Incorrect login or password');
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async register(user) {
+    try {
+      await usersService.create(user);
+      // Generate an access token
+      const accessToken = jwt.sign({ login: user.login,  password: user.password }, config.accessTokenSecret);
+
+      return accessToken;
     } catch (error) {
       throw error;
     }
