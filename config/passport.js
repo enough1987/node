@@ -2,15 +2,15 @@
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import UserService from '../api/services/users';
-import config from './config';
 import logger from './winston';
+
+const CONF_ACCESS_TOKEN = process.env.CONF_ACCESS_TOKEN;
 
 const ExtractJwt = passportJWT.ExtractJwt;
 const JwtStrategy = passportJWT.Strategy;
-
 const jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = config.accessTokenSecret;
+jwtOptions.secretOrKey = CONF_ACCESS_TOKEN;
 
 const strategy = new JwtStrategy(jwtOptions, async (payload, next) => {
   const user = await UserService.getByLoginAndPassword(

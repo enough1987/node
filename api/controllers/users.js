@@ -21,7 +21,7 @@ class UsersController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -42,7 +42,7 @@ class UsersController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -65,7 +65,7 @@ class UsersController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -88,7 +88,7 @@ class UsersController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -115,7 +115,7 @@ class UsersController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -138,7 +138,7 @@ class UsersController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }

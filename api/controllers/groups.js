@@ -19,7 +19,7 @@ class GroupsController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -42,7 +42,7 @@ class GroupsController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -65,7 +65,7 @@ class GroupsController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -92,7 +92,7 @@ class GroupsController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -115,7 +115,7 @@ class GroupsController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }
@@ -139,7 +139,7 @@ class GroupsController {
         error
       );
       res.status(400).json({
-        error
+        error: error.message
       });
     }
   }

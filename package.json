@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
     "build": "babel src --out-dir dist",
     "lint": "./node_modules/.bin/eslint \"**/*.js\" --fix",
     "task1": "nodemon --exec babel-node ./module1/task1.js",
@@ -25,9 +27,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^25.3.0",
     "nodemon": "^2.0.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.8.7",
     "@hapi/joi": "^17.1.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",

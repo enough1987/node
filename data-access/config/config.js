@@ -1,19 +1,19 @@
 require('dotenv').config();
 
-const dbUrl = 'postgres://tvdysmfp:9ryHgeVVOCq9TDnMQdiPidY35gTqLE1U@balarama.db.elephantsql.com:5432/tvdysmfp';
+const CONF_DB_URL = process.env.CONF_DB_URL;
 
 const config = {
   development: {
-    url: process.env.DEV_DATABASE_URL || dbUrl,
-    dialect: 'postgres'
+    url: process.env.CONF_DEV_DB_URL || CONF_DB_URL,
+    dialect: process.env.CONF_DB_DIALECT
   },
   test: {
-    url: process.env.TEST_DATABASE_URL || dbUrl,
-    dialect: 'postgres'
+    url: process.env.CONF_TEST_DB_URL || CONF_DB_URL,
+    dialect: process.env.CONF_DB_DIALECT
   },
   production: {
-    url: process.env.DATABASE_URL || dbUrl,
-    dialect: 'postgres'
+    url: process.env.CONF_DB_URL,
+    dialect: process.env.CONF_DB_DIALECT
   }
 };
 

@@ -1,6 +1,7 @@
-import config from '../../config/config';
 import jwt from 'jsonwebtoken';
 import usersService from '../services/users';
+
+const CONF_ACCESS_TOKEN = process.env.CONF_ACCESS_TOKEN;
 
 export default class AuthService {
   static async login(login, password) {
@@ -9,7 +10,7 @@ export default class AuthService {
 
       if (user) {
         // Generate an access token
-        const accessToken = jwt.sign({ login: user.login,  password: user.password }, config.accessTokenSecret);
+        const accessToken = jwt.sign({ login: user.login,  password: user.password }, CONF_ACCESS_TOKEN);
 
         return accessToken;
       }
@@ -23,7 +24,7 @@ export default class AuthService {
     try {
       await usersService.create(user);
       // Generate an access token
-      const accessToken = jwt.sign({ login: user.login,  password: user.password }, config.accessTokenSecret);
+      const accessToken = jwt.sign({ login: user.login,  password: user.password }, CONF_ACCESS_TOKEN);
 
       return accessToken;
     } catch (error) {
